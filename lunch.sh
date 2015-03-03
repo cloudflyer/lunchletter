@@ -1,6 +1,6 @@
 #!/bin/bash
-MAILTO="reciver1@mail.com reciver2@mail.com reciver3@mail.com reciver4@mail.com"
-MAILFROM="todayslunch@barabicu.se"
+MAILTO="alice@example.com bob@example.org"
+MAILFROM="lunch_script@example.edu"
 if hash curl 2>/dev/null; then
   if hash lynx 2>/dev/null; then
     curl -s barabicu.se | awk -F '<li>' '{printf $2}' | awk -F '</li>' '{printf $2}' > barabicu.html && lynx -assume_charset=utf-8 -display_charset=utf-8 -dump barabicu.html | mailx -r $MAILFROM -s "Dagens Lunch - "$(date +"%A %d/%m-%Y") $MAILTO  
