@@ -1,5 +1,5 @@
 #!/bin/bash
-LANG=sv_SE.UTF-8
+export LANG=sv_SE.UTF-8
 MAILTO="bob@example.com scott@example.com"
 MAILFROM="lunch@example.com"
 TODAY=`date +%A`
