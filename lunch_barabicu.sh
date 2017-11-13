@@ -7,8 +7,10 @@ if hash curl 2>/dev/null; then
   if hash lynx 2>/dev/null; then
     curl -s barabicu.se | \
     awk -F '<li>' '{printf $2}' | \
-    awk -F '</li>' '{printf $2}' > \
-    barabicu.html && lynx -assume_charset=utf-8 -display_charset=utf-8 -dump barabicu.html | \
+    awk -F '</li>' '{printf $2}' | \
+    awk -F '<br />' '{ print $1}' > \
+    barabicu.html && echo "<br/><br/>Source: http://barabicu.se" >> \
+    barabicu.html && lynx -cfg <(echo COLLAPSE_BR_TAGS:FALSE) -assume_charset=utf-8 -display_charset=utf-8 -dump barabicu.html | \
     mailx -r $MAILFROM -s "Dagens Lunch - BARABICU - "${TODAY^} $MAILTO  
     
     rm barabicu.html
